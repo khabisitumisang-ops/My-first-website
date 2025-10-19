@@ -1,0 +1,43 @@
+*app.py*
+```python
+from flask import Flask, render_template
+
+app = Flask(_name_)
+
+@app.route("/")
+def blog():
+    title = "Tech & AI Blog"
+    posts = [
+        {"title": "The Rise of AI", "content": "AI is transforming industries across the globe."},
+        {"title": "Python for Beginners", "content": "Python is a great language to start programming."},
+        {"title": "Web Development Basics", "content": "HTML, CSS, and JavaScript form the core of the web."}
+    ]
+    return render_template("blog.html", title=title, posts=posts)
+
+if _name_ == "_main_":
+    app.run(debug=True)
+```
+
+*templates/blog.html*
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background-color: #f4f4f4; }
+        h1 { color: #333; }
+        .post { background: white; padding: 15px; margin-bottom: 10px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+    {% for post in posts %}
+        <div class="post">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.content }}</p>
+        </div>
+    {% endfor %}
+</body>
+</html>
+```
